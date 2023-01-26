@@ -1,25 +1,21 @@
-import logo from './logo.svg';
 import './App.css';
+import AppRouter from "./AppRouter";
+import Navigation from "./components/Navigation/Navigation";
+import {createContext, useState} from "react";
+
+export const AuthContext = createContext(false)
 
 function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+    const [context, setContext] = useState(localStorage.getItem('token') !== "")
+    return (
+        <AuthContext.Provider value={[context, setContext]}>
+            <div className="App">
+                <Navigation />
+                <div style={{width: 600}}>
+                    <AppRouter />
+                </div>
+            </div>
+        </AuthContext.Provider>
+    );
 }
-
 export default App;

@@ -1,0 +1,33 @@
+.outer {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.outer h1 {
+    margin-bottom: 30px;
+}
+
+.outer input {
+    margin: 0 0 20px;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 50px;
+    width: 367px;
+}
+
+.outer textarea {
+    margin: 1px;
+    display: block;
+    padding: 10px 15px;
+    border-radius: 15px;
+}
+
+.outer button {
+    padding: 15px 40px;
+    border: none;
+    background-color: deepskyblue;
+    color: white;
+    border-radius: 50px;
+    cursor: pointer;
+    margin-top: 10px;
+}

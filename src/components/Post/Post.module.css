@@ -1,0 +1,71 @@
+.outer {
+    border: 1px solid rgba(0, 0, 0, 0.2);
+    padding: 15px;
+    margin: 0;
+    cursor: pointer;
+}
+
+.user {
+    color: rgba(0, 0, 0, 0.6);
+    margin: 0 0 0 0;
+}
+
+.likes {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.likes p {
+    margin-left: 20px;
+}
+
+.likes > button {
+    background-image: url("https://s3-us-west-2.amazonaws.com/s.cdpn.io/9632/heart.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    border: none;
+    width: 40px;
+    height: 40px;
+    cursor: pointer;
+}
+
+.disliked {
+    background-image: url("../../assets/heart_white.png")!important;
+}
+
+.topBar {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.topBar > div > div {
+    width: 60px;
+    height: 60px;
+    border-radius: 15px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    position: relative;
+}
+
+.topBar > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+}
+
+.topBar > div > div > img {
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    -ms-transform: translateY(-50%);
+    transform: translateY(-50%);
+}
+
+.topBar > div > div:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}

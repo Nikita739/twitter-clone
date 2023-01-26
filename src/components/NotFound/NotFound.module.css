@@ -1,0 +1,14 @@
+.outer {
+    width: fit-content;
+    margin: 0 auto;
+}
+
+.outer h1 {
+    font-size: 40px;
+    font-family: Arial, sans-serif;
+}
+
+.outer p {
+    font-size: 25px;
+    font-family: Arial, sans-serif;
+}

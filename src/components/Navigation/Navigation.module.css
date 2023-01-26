@@ -1,0 +1,35 @@
+.outer {
+    width: 275px;
+    background-color: transparent;
+    margin-top: 20px;
+}
+
+.outer > ul {
+    padding: 15px 10px;
+    list-style-type: none;
+    border: black 1px solid;
+    border-radius: 15px;
+    margin: 0;
+}
+
+.outer > ul li {
+    font-family: Arial, sans-serif;
+    font-size: 25px;
+    margin-bottom: 20px;
+    cursor: pointer;
+    transition: background-color 0.3s;
+    padding: 5px 15px;
+    border-radius: 50px;
+}
+
+.outer > ul li:hover {
+    background-color: rgba(15, 20, 25, 0.1);
+}
+
+.outer > ul li:last-child {
+    margin-bottom: 0;
+}
+
+.active {
+    font-weight: bolder;
+}

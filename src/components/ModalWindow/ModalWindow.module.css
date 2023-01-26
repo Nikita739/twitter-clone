@@ -1,0 +1,131 @@
+.darkBG {
+    background-color: rgba(0, 0, 0, 0.2);
+    width: 100vw;
+    height: 100vh;
+    z-index: 10;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    position: fixed;
+    cursor: default;
+}
+
+.centered {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    cursor: default;
+    z-index: 1000;
+}
+
+.modal {
+    padding-bottom: 20px;
+    background: white;
+    color: white;
+    border-radius: 16px;
+    box-shadow: 0 5px 20px 0 rgba(0, 0, 0, 0.04);
+}
+
+.modalHeader {
+    height: 50px;
+    background: white;
+    overflow: hidden;
+    border-top-left-radius: 16px;
+    border-top-right-radius: 16px;
+}
+
+.heading {
+    margin: 15px 0;
+    color: black;
+    font-weight: 500;
+    font-size: 25px;
+    text-align: center;
+}
+
+.modalContent {
+    margin: 30px 0;
+    font-size: 20px;
+    color: black;
+    text-align: center;
+}
+
+.modalActions {
+    position: absolute;
+    bottom: 2px;
+    margin-bottom: 10px;
+    width: 100%;
+}
+
+.actionsContainer {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.closeBtn {
+    cursor: pointer;
+    font-weight: 500;
+    font-size: 18px;
+    color: #2c3e50;
+    transition: all 0.25s ease;
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    align-self: flex-end;
+    margin-top: -7px;
+    margin-right: -7px;
+    background-image: url("https://upload.wikimedia.org/wikipedia/commons/thumb/b/b1/Saint_Andrew%27s_cross_black.svg/1024px-Saint_Andrew%27s_cross_black.svg.png");
+    background-size: 100%;
+    background-repeat: no-repeat;
+    background-color: transparent;
+    width: 20px;
+    height: 20px;
+    border: none;
+}
+
+.closeBtn:hover {
+    transform: translate(-4px, 4px);
+}
+
+.closeBtn > div {
+
+}
+
+.deleteBtn {
+    margin-top: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 11px 28px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    border: none;
+    color: #fff;
+    background: #ff3e4e;
+    transition: all 0.25s ease;
+}
+
+.deleteBtn:hover {
+    box-shadow: 0 10px 20px -10px rgba(255, 62, 78, 0.6);
+    transform: translateY(-5px);
+    background: #ff3e4e;
+}
+
+.cancelBtn {
+    margin-top: 10px;
+    cursor: pointer;
+    font-weight: 500;
+    padding: 11px 28px;
+    border-radius: 12px;
+    font-size: 0.8rem;
+    border: none;
+    color: #2c3e50;
+    background: #fcfcfc;
+    transition: all 0.25s ease;
+}
+
+.cancelBtn:hover {
+    box-shadow: none;
+    transform: none;
+    background: whitesmoke;
+}
