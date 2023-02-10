@@ -1,3 +1,5 @@
+### TO RUN THE APPLICATION, DOWNLOAD REPO FILES IN A FOLDER, AND RUN npm start.
+
 # Getting Started with Create React App
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
