@@ -11,7 +11,6 @@ const ProfilePreview = ({uid}) => {
     useEffect(() => {
         setIsLoading(true)
         getUserById(uid).then(data => {
-            console.log(data)
             setUserObj(data)
             setIsLoading(false)
         })

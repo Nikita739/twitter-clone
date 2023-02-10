@@ -1,6 +1,13 @@
 .outer {
     border-radius: 10px;
-    padding: 0 10px;
+    padding: 20px;
+    cursor: pointer;
+    width: fit-content;
+    height: fit-content;
+}
+
+.outer > p {
+    margin: 0;
 }
 
 .outer:hover {

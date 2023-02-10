@@ -6,8 +6,11 @@ import {getUserById, updateUserData} from "../../http/requests";
 const Profile = () => {
     const searchParams = new URLSearchParams(window.location.search)
     let PARAMS_ID = searchParams.get("uid")
-    if(JSON.parse(atob(localStorage.token)).id === PARAMS_ID) {
-        PARAMS_ID = "my"
+
+    if(localStorage.token) {
+        if(JSON.parse(atob(localStorage.token)).id === PARAMS_ID) {
+            PARAMS_ID = "my"
+        }
     }
 
     const [user, setUser] = useState({})

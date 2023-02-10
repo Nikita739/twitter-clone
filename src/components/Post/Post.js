@@ -5,8 +5,9 @@ import {db} from "../../firebase-config";
 import {useNavigate} from 'react-router-dom'
 import {AuthContext} from "../../App";
 import ModalWindow from "../ModalWindow/ModalWindow";
-import {getUserById, updatePostData, updateUserData} from "../../http/requests";
+import {getUserById, updateUserData} from "../../http/requests";
 import ProfilePreview from "../ProfilePreview/ProfilePreview";
+import LikeBtn from "../LikeBtn/LikeBtn";
 
 const Post = ({postObj}) => {
     const [user, setUser] = useState({})
@@ -19,6 +20,7 @@ const Post = ({postObj}) => {
     const titleRef = useRef(null)
     const descriptionRef = useRef(null)
 
+    // Check if there is a logged in user, if not, then disable likes //
     let uid = ""
     let commentUserRef = false
     if(localStorage.getItem('token') !== "") {
@@ -29,55 +31,13 @@ const Post = ({postObj}) => {
     const [commUserSnap, setCommUserSnap] = useState([])
     const [isLiked, setIsLiked] = useState(false)
 
-    const like = async (e) => {
-        e.stopPropagation()
-        const currentLikes = realLikes
-        await updateDoc(doc(db, "/posts", postObj.id), {
-            likesCount: currentLikes + 1
-        })
-
-        let newLikes = []
-
-        if(commentUserRef) {
-            const userSnap = await getDoc(commentUserRef)
-
-            newLikes = [...userSnap.data().likes]
-            if(!newLikes.includes(postObj.id)) {
-                newLikes.push(postObj.id)
-            }
-
-            updateUserData(uid, {likes: newLikes}).then()
-        }
-
-        setRealLikes(realLikes + 1)
-    }
-
-    const dislike = async (e) => {
-        e.stopPropagation()
-        const currentLikes = realLikes
-        await updateDoc(doc(db, "/posts", postObj.id), {
-            likesCount: currentLikes - 1
-        })
-
-        let newLikes = []
-        const userSnap = await getDoc(commentUserRef)
-
-        newLikes = [...userSnap.data().likes]
-        const index = newLikes.indexOf(postObj.id)
-        newLikes.splice(index, 1)
-
-        updateUserData(uid, {likes: newLikes}).then()
-
-        setRealLikes(realLikes - 1)
-    }
-
     const openModal = (e) => {
         e.stopPropagation()
         setIsModalOpen(true)
     }
 
     useEffect(() => {
-        const test = async () => {
+        const getUsersLikes = async () => {
             if(commentUserRef) {
                 const userSnap = await getDoc(commentUserRef)
                 setCommUserSnap(userSnap.data().likes)
@@ -89,7 +49,7 @@ const Post = ({postObj}) => {
             }
         }
 
-        test()
+        getUsersLikes()
     }, [realLikes])
 
     // On load ONLY //
@@ -102,6 +62,7 @@ const Post = ({postObj}) => {
         getUserById(postObj.userId).then((data) => {
             setUser(data)
         })
+
         setRealLikes(postObj.likesCount)
     }, [])
 
@@ -158,8 +119,9 @@ const Post = ({postObj}) => {
 
     return (
         <>
-            <ModalWindow isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
             <ModalWindow prtext={editPostForm} heading="Edit post" isOpen={isEditOpen} setIsOpen={setIsEditOpen} />
+            <ModalWindow isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
+
             <div className={cl.outer} onClick={() => navigate(`/post/${postObj.id}`)}>
                 <div className={cl.topBar}>
                     <ProfilePreview uid={postObj.userId} />
@@ -179,25 +141,7 @@ const Post = ({postObj}) => {
                 <h2>{postObj.title}</h2>
                 <p>{postObj.description}</p>
                 <div className={cl.likes}>
-                    {isAuth
-                        ?
-                        isLiked
-                            ?
-                            <button onClick={(e) => dislike(e)}>
-
-                            </button>
-                            :
-                            <button className={cl.disliked} onClick={(e) => like(e)}>
-
-                            </button>
-                        :
-                        <>
-                            <button className={cl.disliked} onClick={(e) => openModal(e)}>
-
-                            </button>
-                        </>
-                    }
-                    <p>{realLikes}</p>
+                    <LikeBtn isModalOpen={isModalOpen} setIsModalOpen={setIsModalOpen} isActive={isAuth} isLiked={isLiked} realLikes={realLikes} setRealLikes={setRealLikes} commentUserRef={commentUserRef} postObj={postObj} uid={uid} />
                 </div>
             </div>
         </>

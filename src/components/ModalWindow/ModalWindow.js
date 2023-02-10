@@ -24,7 +24,8 @@ const ModalWindow = ({setIsOpen, prtext, isOpen, heading}) => {
             {isOpen
                 ?
                 <>
-                    <div className={styles.darkBG} onClick={() => {
+                    <div className={styles.darkBG} onClick={(e) => {
+                        e.stopPropagation()
                         setIsOpen(false)
                     }} />
                     <div className={styles.centered}>

@@ -4,6 +4,7 @@ import {doc, getDoc} from "@firebase/firestore";
 import {db} from "../../firebase-config";
 import {getUserById} from "../../http/requests";
 import Loader from "../Loader/Loader";
+import ProfilePreview from "../ProfilePreview/ProfilePreview";
 
 const Comment = ({commentObj}) => {
     const [user, setUser] = useState({})
@@ -28,7 +29,7 @@ const Comment = ({commentObj}) => {
                     <Loader />
                 :
                     <>
-                        <p className={cl.user}>{user.username}</p>
+                        <ProfilePreview uid={commentObj.userId} />
                         <p className={cl.comm}>{commentObj.value}</p>
                     </>
             }
