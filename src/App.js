@@ -11,7 +11,7 @@ function App() {
         <AuthContext.Provider value={[context, setContext]}>
             <div className="App">
                 <Navigation />
-                <div style={{width: 600}}>
+                <div className='content-wrapper' >
                     <AppRouter />
                 </div>
             </div>

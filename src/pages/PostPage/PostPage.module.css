@@ -25,10 +25,22 @@
     width: 100%;
     display: flex;
     flex-direction: row;
-    justify-content: space-between;
+    justify-content: left;
+    gap: 20px;
     margin-bottom: 20px;
 }
 
 .wrapper {
     margin-top: 20px;
+}
+
+@media screen and (max-width: 550px) {
+    .commentWrapper {
+        flex-direction: column;
+        gap: 15px;
+    }
+
+    .commentWrapper > button {
+        max-width: 100px;
+    }
 }

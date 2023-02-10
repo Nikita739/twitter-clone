@@ -1,13 +1,13 @@
 import React, {useContext, useEffect, useState} from 'react';
 import { useParams } from "react-router-dom";
-import {collection, doc, getDoc, getDocs, updateDoc} from "@firebase/firestore";
+import {doc, getDoc, updateDoc} from "@firebase/firestore";
 import {db} from "../../firebase-config";
 import cl from './PostPage.module.css'
 import Comment from "../../components/Comment/Comment";
 import ModalWindow from "../../components/ModalWindow/ModalWindow";
 import {AuthContext} from "../../App";
 import Post from "../../components/Post/Post";
-// import '../../App.css'
+import Loader from "../../components/Loader/Loader";
 
 const PostPage = () => {
     const {id} = useParams()
@@ -66,12 +66,12 @@ const PostPage = () => {
             const postSnap = await getDoc(postRef)
             setPost({...postSnap.data(), id: postSnap.id})
             console.log({...postSnap.data(), id: postSnap.id})
+            await getUser(postSnap.data().userId)
+
             return {...postSnap.data(), id: postSnap.id}
         }
         setNewPost().then(data => {
-            getUser(data.userId).then(() => {
-                setLoading(false)
-            })
+            setLoading(false)
         })
     }, [fake])
 
@@ -80,7 +80,7 @@ const PostPage = () => {
             <ModalWindow isOpen={isModalOpen} setIsOpen={setIsModalOpen} />
             {loading
                 ?
-                <h1>Loading...</h1>
+                <Loader />
                 :
                 <div className={cl.outer}>
                     {Object.keys(post).length > 0

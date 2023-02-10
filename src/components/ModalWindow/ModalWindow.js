@@ -62,9 +62,6 @@ const ModalWindow = ({setIsOpen, prtext, isOpen, heading}) => {
                                     style={{marginBottom: "-3px"}}
                                 />
                             </button>
-                            {/*<div className={styles.modalContent}>*/}
-                            {/*    text*/}
-                            {/*</div>*/}
                             {text}
                         </div>
                     </div>

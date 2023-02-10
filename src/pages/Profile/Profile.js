@@ -2,13 +2,11 @@ import React, {useContext, useEffect, useRef, useState} from 'react';
 import cl from './Profile.module.css'
 import ModalWindow from "../../components/ModalWindow/ModalWindow";
 import {getUserById, updateUserData} from "../../http/requests";
-import {AuthContext} from "../../App";
 
 const Profile = () => {
     const [user, setUser] = useState({})
     const [isOpen, setIsOpen] = useState(false)
     const nameRef = useRef()
-    const [isAuth, setIsAuth] = useContext(AuthContext)
 
     useEffect(() => {
         const newUser = JSON.parse(atob(localStorage.getItem('token')))
@@ -32,16 +30,17 @@ const Profile = () => {
             let newToken = ""
 
             await getUserById(newUser.id).then(data => {
-                console.log(btoa(JSON.stringify(data)))
+                console.log(data)
+                // console.log(btoa(JSON.stringify(data)))
                 newToken = btoa(JSON.stringify(data))
             })
 
             localStorage.setItem('token', newToken)
-            window.location.reload()
+            // window.location.reload()
         }
     }
 
-    const editPostForm = (
+    let editPostForm = (
         <div style={{padding: "0 20px"}}>
             <input
                 ref={nameRef}

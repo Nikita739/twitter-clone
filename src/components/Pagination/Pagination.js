@@ -1,29 +1,18 @@
 import React from 'react';
 import cl from './Pagination.module.css'
 
-const Pagination = ({setPage, page, max}) => {
-    const previous = "< Previous"
-    const next = "Next >"
-
-    const Next = () => {
-        if(page < max) {
+const Pagination = ({loadMore, max, setPage, page}) => {
+    const handleClick = () => {
+        if(page <= max - 1) {
+            loadMore()
             setPage(page + 1)
-        }
-    }
-
-    const Prev = () => {
-        if(page > 1) {
-            setPage(page - 1)
         }
     }
 
     return (
         <div className={cl.wrapper}>
-            <button onClick={Prev} style={{marginRight: 20}} className="public_button">
-                {previous}
-            </button>
-            <button onClick={Next} className="public_button">
-                {next}
+            <button onClick={handleClick} className="public_button">
+                Load more
             </button>
         </div>
     );

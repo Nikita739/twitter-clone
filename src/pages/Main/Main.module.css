@@ -4,12 +4,14 @@
 
 .wrapper {
     margin: 20px 0;
-    max-width: 600px;
-    width: 600px;
+}
+
+.postsWrapper {
+    box-shadow: rgba(0, 0, 0, 0.35) 0 5px 15px;
 }
 
 .searchWrapper {
-    margin-left: 20px;
+    margin: 0 20px;
 }
 
 .searchWrapper > input {
@@ -20,7 +22,15 @@
     padding: 0.35em 0.6em;
     background-color: #fff;
     border: 2px solid black;
-    border-radius: 20px;
+    border-radius: 50px;
+    max-width: 300px;
+    width: 100%;
+    height: 50px;
+    transition: max-width 0.3s ease-in-out;
+}
+
+.searchWrapper > input:focus-visible {
+    max-width: 100%;
 }
 
 .notFound {

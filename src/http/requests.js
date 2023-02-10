@@ -1,4 +1,15 @@
-import {collection, doc, getDoc, getDocs, query, updateDoc, where} from "@firebase/firestore";
+import {
+    collection, collectionGroup,
+    doc, getCountFromServer,
+    getDoc,
+    getDocs,
+    limit,
+    orderBy,
+    query,
+    startAfter,
+    updateDoc,
+    where
+} from "@firebase/firestore";
 import {db} from "../firebase-config";
 
 const postsCollectionRef = collection(db, "/posts")
@@ -28,9 +39,34 @@ export const getPostById = async (id) => {
     return {id: pid, comments: comments, description: description, title: title, userId: uid}
 }
 
-export const getPosts = async () => {
-    const data = await getDocs(postsCollectionRef)
-    return data
+export const getPosts = async (prevData) => {
+    if(prevData) {
+        const lastVisible = prevData.docs[prevData.docs.length-1];
+
+        const next = query(collection(db, "/posts"),
+            orderBy("title"),
+            startAfter(lastVisible),
+            limit(3));
+
+        const totalGroup = collectionGroup(db, "posts")
+        const totalSnapshot = await getCountFromServer(totalGroup)
+        const totalPostsCount = totalSnapshot.data().count
+
+        const res = await getDocs(next)
+        return [res, totalPostsCount]
+    } else {
+        const first = query(collection(db, "/posts"), orderBy("title"), limit(3))
+        const documentSnapshots = await getDocs(first)
+
+        const lastVisible = documentSnapshots.docs[documentSnapshots.docs.length-1]
+
+        const totalGroup = collectionGroup(db, "posts")
+        const totalSnapshot = await getCountFromServer(totalGroup)
+        const totalPostsCount = totalSnapshot.data().count
+
+        const res = await getDocs(first)
+        return [res, totalPostsCount]
+    }
 }
 
 export const getPostByQuery = async (queryStr) => {
