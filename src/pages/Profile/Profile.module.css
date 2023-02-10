@@ -20,6 +20,7 @@
     margin: auto;
     box-shadow: 0 4px 8px 0 rgb(0 0 0 / 20%);
     padding: 0 20px 1px;
+    background-color: white;
 }
 
 .nameWrapper > h2, .profileCard > h2 {
@@ -58,4 +59,12 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: center;
+}
+
+.description {
+    font-size: 20px!important;
+}
+
+.textarea {
+    border-radius: 10px!important;
 }

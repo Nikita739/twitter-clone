@@ -6,6 +6,7 @@ import {useNavigate} from 'react-router-dom'
 import {AuthContext} from "../../App";
 import ModalWindow from "../ModalWindow/ModalWindow";
 import {getUserById, updatePostData, updateUserData} from "../../http/requests";
+import ProfilePreview from "../ProfilePreview/ProfilePreview";
 
 const Post = ({postObj}) => {
     const [user, setUser] = useState({})
@@ -131,8 +132,7 @@ const Post = ({postObj}) => {
                 description: description
             })
             setIsEditOpen(false)
-            window.location.reload()
-            console.log("Updated")
+            navigate(`/post/${postObj.id}`)
         }
     }
 
@@ -162,7 +162,7 @@ const Post = ({postObj}) => {
             <ModalWindow prtext={editPostForm} heading="Edit post" isOpen={isEditOpen} setIsOpen={setIsEditOpen} />
             <div className={cl.outer} onClick={() => navigate(`/post/${postObj.id}`)}>
                 <div className={cl.topBar}>
-                    <p className={cl.user}>{user.username}</p>
+                    <ProfilePreview uid={postObj.userId} />
                     {postObj.userId === currentUser.id
                     &&
                     <div>

@@ -1,0 +1,8 @@
+.outer {
+    border-radius: 10px;
+    padding: 0 10px;
+}
+
+.outer:hover {
+    background-color: rgba(0, 0, 0, 0.1);
+}

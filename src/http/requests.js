@@ -22,8 +22,9 @@ export const getUserById = async (id) => {
     const email = userSnap._document.data.value.mapValue.fields.email.stringValue
     const password = userSnap._document.data.value.mapValue.fields.password.stringValue
     const username = userSnap._document.data.value.mapValue.fields.username.stringValue
+    const description = userSnap._document.data.value.mapValue.fields.description.stringValue
 
-    return {id: uid, email: email, password: password, username: username}
+    return {id: uid, email: email, password: password, username: username, description: description}
 }
 
 export const getPostById = async (id) => {

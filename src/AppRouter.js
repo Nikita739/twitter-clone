@@ -20,7 +20,7 @@ const AppRouter = () => {
                     <>
                         <Route path="/new" element={<New />} />
                         <Route path="/logout" element={<Logout />} />
-                        <Route path="/profile" element={<Profile />} />
+
                     </>
                 :
                 <>
@@ -29,6 +29,7 @@ const AppRouter = () => {
                 </>
             }
 
+            <Route path="/profile" element={<Profile />} />
             <Route path="/" element={<Main />}/>
             <Route path="/post/:id" element={<PostPage />}/>
             <Route path="*" element={<NotFound />} />

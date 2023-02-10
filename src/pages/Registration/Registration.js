@@ -11,7 +11,7 @@ const Registration = () => {
     const usersCollection = collection(db, "/users")
 
     const register = async () => {
-        await addDoc(usersCollection, {email: email, password: password, username: username, likes: []})
+        await addDoc(usersCollection, {email: email, password: password, username: username, likes: [], description: ""})
         setEmail("")
         setPassword("")
         setUsername("")

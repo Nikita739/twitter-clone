@@ -38,9 +38,9 @@ const Navigation = () => {
                     ?
                         path === "/profile"
                             ?
-                                <li className={cl.active} onClick={() => navigate("/profile")}>{user.username}</li>
+                                <li className={cl.active} onClick={() => navigate("/profile?uid=my")}>{user.username}</li>
                             :
-                                <li onClick={() => navigate("/profile")}>{user.username}</li>
+                                <li onClick={() => navigate("/profile?uid=my")}>{user.username}</li>
                     :
                         null
                 }

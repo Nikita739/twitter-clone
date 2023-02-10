@@ -34,6 +34,7 @@ const Login = () => {
                 loginObj.email = doc.data().email
                 loginObj.password = doc.data().password
                 loginObj.likes = doc.data().likes
+                loginObj.description = doc.data().description
             });
             console.log(loginObj)
             if(Object.keys(loginObj).length !== 0) {
