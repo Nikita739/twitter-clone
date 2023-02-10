@@ -1,5 +1,5 @@
 .outer {
-    width: fit-content;
+    width: 60%;
     margin: 0 auto;
 }
 
@@ -12,7 +12,8 @@
     display: block;
     padding: 10px 15px;
     border-radius: 50px;
-    width: 367px;
+    max-width: 367px;
+    width: 100%;
 }
 
 .outer textarea {
