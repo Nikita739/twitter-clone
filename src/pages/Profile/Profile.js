@@ -75,7 +75,6 @@ const Profile = () => {
 
             setPosts([...posts, ...newPosts])
             setPostsRef(data)
-            console.log(data.docs)
 
             setIsPostsLoading(false)
         }

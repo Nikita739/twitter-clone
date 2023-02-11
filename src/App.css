@@ -40,6 +40,11 @@ body {
     color: white;
     border-radius: 50px;
     cursor: pointer;
+    transition: background-color 0.1s linear;
+}
+
+.public_button:hover {
+    background-color: #00a2dc;
 }
 
 .public_input {

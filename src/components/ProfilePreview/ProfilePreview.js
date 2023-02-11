@@ -23,6 +23,7 @@ const ProfilePreview = ({uid}) => {
 
     return (
         <div onClick={goToProfile} className={cl.outer}>
+            <img alt="Profile pic" src="https://cdn-icons-png.flaticon.com/512/149/149071.png" width={30} height={30} />
             <p>{isLoading ? "Loading..." : userObj.username}</p>
         </div>
     );

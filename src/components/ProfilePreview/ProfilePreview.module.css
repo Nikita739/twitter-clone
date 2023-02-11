@@ -1,9 +1,14 @@
 .outer {
     border-radius: 10px;
-    padding: 20px;
+    padding: 10px 5px;
     cursor: pointer;
     width: fit-content;
     height: fit-content;
+    display: flex;
+    flex-direction: row;
+    justify-content: left;
+    align-items: center;
+    gap: 10px;
 }
 
 .outer > p {
