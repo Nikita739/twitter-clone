@@ -2,6 +2,7 @@ import { initializeApp } from "firebase/app";
 import { getFirestore } from '@firebase/firestore'
 import 'firebase/auth'
 
+// Please do not break my DB
 const firebaseConfig = {
     apiKey: "AIzaSyBZpw60-NOZgNYqU2unh7Gqg5Wxb91COeM",
     authDomain: "social-network-47b5a.firebaseapp.com",
