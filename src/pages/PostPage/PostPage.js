@@ -19,6 +19,15 @@ const PostPage = () => {
     const [isModalOpen, setIsModalOpen] = useState(false)
     const [isAuth, setIsAuth] = useContext(AuthContext)
 
+    const validate = () => {
+        setComment(comment.trim())
+        if(comment.trim().length > 0) {
+            return true
+        }
+        alert("Comment body can't be empty")
+        return false
+    }
+
     const getUser = async (id) => {
         const userRef = doc(db, "/users", id)
 
@@ -33,25 +42,27 @@ const PostPage = () => {
 
     const postComment = async () => {
         if(isAuth) {
-            let newComments = []
+            if(validate()) {
+                let newComments = []
 
-            const postRef = doc(db, "/posts", post.id);
-            const postSnap = await getDoc(postRef);
-            console.log(postSnap.data().comments)
+                const postRef = doc(db, "/posts", post.id);
+                const postSnap = await getDoc(postRef);
+                console.log(postSnap.data().comments)
 
-            newComments = postSnap.data().comments
+                newComments = postSnap.data().comments
 
-            let uid = JSON.parse(atob(localStorage.getItem('token'))).id
-            console.log(uid)
+                let uid = JSON.parse(atob(localStorage.getItem('token'))).id
+                console.log(uid)
 
-            newComments.push({value: comment, userId: uid})
+                newComments.push({value: comment, userId: uid})
 
-            console.log(newComments)
+                console.log(newComments)
 
-            await updateDoc(doc(db, "/posts", post.id), {
-                comments: newComments
-            });
-            setFake(!fake)
+                await updateDoc(doc(db, "/posts", post.id), {
+                    comments: newComments
+                });
+                setFake(!fake)
+            }
         } else {
             setIsModalOpen(true)
             setComment("")

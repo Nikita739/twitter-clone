@@ -28,6 +28,8 @@ const Profile = () => {
     const nameRef = useRef()
     const descriptionRef = useRef()
 
+    const [triggerReload, setTriggerReload] = useState(false)
+
     useEffect(() => {
         setLoading(true)
 
@@ -46,7 +48,7 @@ const Profile = () => {
 
         setIsPostsLoading(true)
         fetchInitialPosts(id).then()
-    }, [])
+    }, [triggerReload])
 
     const fetchInitialPosts = async (id) => {
         const data = await getPostsByUserId(id)
@@ -104,6 +106,9 @@ const Profile = () => {
             })
 
             localStorage.setItem('token', newToken)
+            setIsOpen(false)
+
+            setTriggerReload(!triggerReload)
         }
     }
 
@@ -119,6 +124,8 @@ const Profile = () => {
 
         localStorage.setItem('token', newToken)
         setIsDescriptionOpen(false)
+
+        setTriggerReload(!triggerReload)
     }
 
     let editNameForm = (

@@ -48,7 +48,7 @@ const New = () => {
                 cols="50"
                 placeholder="Description"
             />
-            <button onClick={createPost}>Post</button>
+            <button className='public_button' onClick={createPost}>Post</button>
         </div>
     );
 };
