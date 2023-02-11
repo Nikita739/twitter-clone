@@ -28,7 +28,7 @@ const Post = ({postObj}) => {
         commentUserRef = doc(db, "/users", uid)
     }
 
-    const [commUserSnap, setCommUserSnap] = useState([])
+    // const [commUserSnap, setCommUserSnap] = useState([])
     const [isLiked, setIsLiked] = useState(false)
 
     const openModal = (e) => {
@@ -40,7 +40,7 @@ const Post = ({postObj}) => {
         const getUsersLikes = async () => {
             if(commentUserRef) {
                 const userSnap = await getDoc(commentUserRef)
-                setCommUserSnap(userSnap.data().likes)
+                // setCommUserSnap(userSnap.data().likes)
                 if(userSnap.data().likes.includes(postObj.id)) {
                     setIsLiked(true)
                 } else {

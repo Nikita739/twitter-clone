@@ -38,7 +38,7 @@ const Main = () => {
         const data = response[0]
 
         console.log(response[1])
-        setPostsCount(response[1] / 3)
+        setPostsCount(Math.ceil(response[1] / 3))
 
         const dataDocs = data.docs
         setPostsRef(data)

@@ -87,3 +87,34 @@ export const updateUserData = async (postId, updateData) => {
         await updateDoc(doc(db, "/users", postId), updateData)
     }
 }
+
+export const getPostsByUserId = async (uid, prevData) => {
+    if(prevData) {
+        const lastVisible = prevData.docs[prevData.docs.length-1];
+
+        const next = query(collection(db, "/posts"),
+            where("userId", "==", uid),
+            orderBy("title"),
+            startAfter(lastVisible),
+            limit(3));
+
+        const totalGroup = collectionGroup(db, "posts")
+        const totalSnapshot = await getCountFromServer(totalGroup)
+        const totalPostsCount = totalSnapshot.data().count
+
+        const res = await getDocs(next)
+        return [res, totalPostsCount]
+    } else {
+        const first = query(collection(db, "/posts"), where("userId", "==", uid), orderBy("title"), limit(3))
+        const documentSnapshots = await getDocs(first)
+
+        const lastVisible = documentSnapshots.docs[documentSnapshots.docs.length-1]
+
+        const totalGroup = collectionGroup(db, "posts")
+        const totalSnapshot = await getCountFromServer(totalGroup)
+        const totalPostsCount = totalSnapshot.data().count
+
+        const res = await getDocs(first)
+        return [res, totalPostsCount]
+    }
+}
